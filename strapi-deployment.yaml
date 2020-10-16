@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose.exe convert
+    kompose.version: 1.19.0 (f63a961c)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: strapi
+  name: strapi
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose.exe convert
+        kompose.version: 1.19.0 (f63a961c)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: strapi
+    spec:
+      containers:
+      - env:
+        - name: AUTHENTICATION_DATABASE
+          value: strapi
+        - name: DATABASE_CLIENT
+          value: mongo
+        - name: DATABASE_HOST
+          value: db
+        - name: DATABASE_NAME
+          value: strapi
+        - name: DATABASE_PASSWORD
+          value: "123"
+        - name: DATABASE_PORT
+          value: "27017"
+        - name: DATABASE_USERNAME
+          value: "123"
+        image: strapi/strapi
+        name: strapi
+        ports:
+        - containerPort: 1337
+        resources: {}
+      restartPolicy: Always
+status: {}
